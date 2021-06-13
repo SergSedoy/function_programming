@@ -3,10 +3,7 @@ package task1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -19,11 +16,10 @@ public class Main {
     }
 
     public static List<String> generator(String s) {
-        List<String> list = new ArrayList<>(Arrays.asList(s.trim().split(" ")));
-        return list.stream().filter(x -> !x.equals(""))
+        Set<String> set = new HashSet<>(Arrays.asList(s.trim().split(" ")));
+        List<String> list = new ArrayList<>(set);
+        return list.stream().filter(x -> !x.isEmpty())
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
     }
 }
-// в программе присутствуют следующие черты функционального стиля:
-// чистая функция "generator" - результат работы функции зависит только от входных параметров (детерминированная функция), также используется монада.
