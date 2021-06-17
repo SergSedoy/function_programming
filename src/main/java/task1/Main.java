@@ -12,13 +12,13 @@ public class Main {
         System.out.println("Введите предложение: ");
         List<String> orderList = generator(reader.readLine());
         for (String world : orderList)
-            System.out.println(world);
+            System.out.println(world + "-");
     }
 
     public static List<String> generator(String s) {
-        Set<String> set = new HashSet<>(Arrays.asList(s.trim().split(" ")));
-        List<String> list = new ArrayList<>(set);
-        return list.stream().filter(x -> !x.isEmpty())
+        List<String> list = new ArrayList<>(Arrays.asList(s.trim().split(" ")));
+        return list.stream().filter(x -> x.length() > 0)
+                .distinct()
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
     }
